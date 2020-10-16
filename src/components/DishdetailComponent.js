@@ -9,7 +9,6 @@ import {
 
 class DishDetail extends Component {
 
-
   renderDish(dish){
     const { name, image, description} = dish;
     return (
@@ -37,7 +36,6 @@ class DishDetail extends Component {
               return (
                 <li key={ id }>
                   <div>{ text }</div>
-                  <br />
                   <div>-- { author } , { date }</div>
                   <br />
                 </li>
@@ -55,12 +53,14 @@ class DishDetail extends Component {
       const { comments } = dish;
       console.log(comments);
       return (
-        <div className="row">
-          <div  className="col-12 col-md-5 m-1">
-            {this.renderDish(dish)}
-          </div>
-          <div  className="col-12 col-md-5 m-1">
-            {this.renderComments(comments)}
+        <div className="container">
+          <div className="row">
+            <div  className="col-12 col-md-5 m-1">
+              {this.renderDish(dish)}
+            </div>
+            <div  className="col-12 col-md-5 m-1">
+              {this.renderComments(comments)}
+            </div>
           </div>
         </div>
       );
