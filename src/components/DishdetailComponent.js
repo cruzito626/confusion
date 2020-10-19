@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   Card,
   CardBody,
   CardImg,
@@ -8,7 +11,7 @@ import {
 } from 'reactstrap';
 
 
-const renderDish = (dish) => {
+const RenderDish = ({dish}) => {
   const { name, image, description} = dish;
   return (
     <Card>
@@ -21,9 +24,10 @@ const renderDish = (dish) => {
   );
 };
 
-const renderComments = (comments= []) => {
+const RenderComments = ({comments}) => {
   const dateFormat = { year: 'numeric', month: 'short', day: 'numeric' };
   const region = 'en-US';
+
   return (
     <div>
       <h4>Coments</h4>
@@ -46,19 +50,21 @@ const renderComments = (comments= []) => {
   );
 };
 
-const DishDetail = ({ dish }) => {
+const DishDetail = ({ dish, comments }) => {
   if (dish != null) {
-    const { comments } = dish;
-    console.log(comments);
     return (
       <div className="container">
         <div className="row">
-          <div  className="col-12 col-md-5 m-1">
-            {renderDish(dish)}
+          <Breadcrumb>
+            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+            <BreadcrumbItem active><Link to='/menu'>Menu</Link></BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-12">
           </div>
-          <div  className="col-12 col-md-5 m-1">
-            {renderComments(comments)}
-          </div>
+        </div>
+        <div className="row">
+          <RenderDish dish={dish} />
+          <RenderComments comments={comments} />
         </div>
       </div>
     );
